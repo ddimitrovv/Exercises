@@ -4,13 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/style/style.css">
+    <link rel="stylesheet" href="/style/style.css">
     <title>CarCollection</title>
 </head>
 
 <body>
 <div id="box">
-
     <header>
         <!-- Navigation Bar -->
         <h1><a class="index-navigation" href="#"><span>C</span>ARS <span>C</span>OLLECTION</a></h1>
@@ -21,44 +20,44 @@
         </nav>
     </header>
 
-
+    <!-- edit car form -->
     <section id="create-page" class="auth">
-        <!-- create car form -->
         <form id="create">
             <div class="container">
-                <h1 class="form-create-headline">Create Car</h1>
+
+                <h1>Edit Car</h1>
                 <label for="type">Type:</label>
                 <select name="type" required="" id="type">
-                    <option value="" selected="">---------</option>
-                    <option value="Sport Car">Sport Car</option>
+                    <option value="">---------</option>
+                    <option value="Sport Car" selected="">Sport Car</option>
                     <option value="Pickup">Pickup</option>
                     <option value="Crossover">Crossover</option>
                     <option value="Minibus">Minibus</option>
                     <option value="Other">Other</option>
                 </select>
+
                 <label for="model">Model:</label>
-                <input type="text" name="model" maxlength="20" required="" id="model">
+                <input type="text" name="model" value="Ferrari 488 GTB" maxlength="20" required="" id="model">
 
                 <label for="year">Year:</label>
-                <input type="number" name="year" required="" id="year">
+                <input type="number" name="year" value="2019" required="" id="year">
 
                 <label for="image_url">Image URL:</label>
-                <input type="url" name="image_url" maxlength="200" required="" id="image_url">
+                <input type="url" name="image_url" value="https://i0.wp.com/ccclaguna.com/wp-content/uploads/2019/12/DSC_0373-scaled.jpg?fit=2560%2C1707&amp;ssl=1" maxlength="200" required="" id="image_url">
 
                 <label for="price">Price:</label>
-                <input type="number" name="price" step="any" required="" id="price">
+                <input type="number" name="price" value="285.0" step="any" required="" id="price">
 
-
-                <input class="btn" type="submit" value="Create Car">
+                <input class="btn submit" type="submit" value="Edit Car">
             </div>
         </form>
     </section>
-</div>
-<!-- Footer -->
-<footer>
-    &copy;SoftUni Team 2022. All rights reserved.
-</footer>
-<!-- End Footer -->
 
+    <!-- footer -->
+    <footer>
+        &copy;SoftUni Team 2022. All rights reserved.
+    </footer>
+
+</div>
 </body>
 </html>
