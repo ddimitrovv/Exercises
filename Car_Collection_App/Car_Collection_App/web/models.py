@@ -79,6 +79,10 @@ class Profile(models.Model):
         verbose_name='Profile Picture',
     )
 
+    def full_name(self):
+        if self.first_name and self.last_name:
+            return f'{self.first_name} {self.last_name}'
+
 
 class Car(models.Model):
     CHARACTER_MAX_LENGTH = 10

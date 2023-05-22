@@ -5,7 +5,9 @@
       <div class="container">
         <h1>Are you sure you want to delete your profile?</h1>
           <!-- Delete Profile Form -->
-        <form id='delete'>
+        <form method="POST" id='delete'>
+            {{ form }}
+            {% csrf_token %}
         <!-- Confirm Button -->
         <input class="btn submit" type="submit" value="Yes">
         </form>

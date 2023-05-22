@@ -7,23 +7,29 @@
         <div class="info-section">
             <div class="car-header">
                 <!-- default profile image (if the user does NOT have any)-->
+                {% if not profile.profile_picture %}
                     <img class="car-img" src="{% static 'images/default-profile.png' %}" alt='profile-image'/>
                 <!-- if the user has a profile image -->
+                {% else %}
+                    <img class="car-img" src="{{ profile.profile_picture }}" alt='profile-image'/>
+                {% endif %}
                     <img class="car-img" src="" alt='profile-image'/>
                 <!-- user full name (if any) -->
-                <h1>Svetoslava Stoyanova</h1>
+                {% if profile.full_name %}
+                <h1>{{ profile.full_name }}</h1>
+                {% endif %}
                 <!-- user username -->
-                <p class="description">Username: svetoslava</p>
+                <p class="description">Username: {{ profile.username }}</p>
                 <!-- user email -->
-                <p class="description">Email: svetoslava@gmail.com</p>
+                <p class="description">Email: {{ profile.email }}</p>
                 <!-- user age -->
-                <p class="description">Age: 30</p>
+                <p class="description">Age: {{ profile.age }}</p>
                 <!-- total price of all cars -->
-                <p class="description">Total price: 285.000</p>
+                <p class="description">Total price: {{ cars_total_price }}</p>
                 <!-- Edit/Delete buttons -->
                 <div class="buttons">
-                    <a href="#" class="edit-button">Edit</a>
-                    <a href="#" class="delete-button">Delete</a>
+                    <a href="{% url 'profile edit' %}" class="edit-button">Edit</a>
+                    <a href="{% url 'profile delete' %}" class="delete-button">Delete</a>
                 </div>
             </div>
         </div>
