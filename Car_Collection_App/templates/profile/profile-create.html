@@ -1,23 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/style/style.css">
-    <title>CarCollection</title>
-</head>
-
-<body>
-<div id="box">
-    <header>
-
-        <!-- navigation bar -->
-        <h1><a class="index-navigation" href="#"><span>C</span>ARS <span>C</span>OLLECTION</a></h1>
-        <nav>
-            <a href="#">Create Profile</a>
-        </nav>
-    </header>
+{% extends 'base/index.html' %}
+{% block content %}
 
     <!-- create profile form -->
     <section id="register-page" class="content auth">
@@ -43,11 +25,4 @@
         </form>
     </section>
 
-    <!-- footer -->
-    <footer>
-        &copy;SoftUni Team 2022. All rights reserved.
-    </footer>
-
-</div>
-</body>
-</html>
+{% endblock %}
