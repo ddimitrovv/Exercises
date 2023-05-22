@@ -1,12 +1,23 @@
 from django.shortcuts import render, redirect
 
-from Car_Collection_App.web.forms import ProfileCreateForm, ProfileEditForm, ProfileDeleteForm
+from Car_Collection_App.web.forms import ProfileCreateForm, ProfileEditForm, ProfileDeleteForm, CarCreateForm, \
+    CarEditForm, CarDeleteForm
 from Car_Collection_App.web.models import Profile, Car
 
 
 def get_profile():
     current_profile = Profile.objects.all() or None
     return current_profile
+
+
+def get_cars():
+    cars = Car.objects.all().order_by('pk')
+    return cars
+
+
+def get_car(pk):
+    car = Car.objects.filter(pk=pk).get()
+    return car
 
 
 def index(request):
@@ -22,7 +33,15 @@ def index(request):
 
 
 def catalogue(request):
-    return render(request, 'base/catalogue.html')
+    profile = get_profile()
+    cars = get_cars()
+
+    context = {
+        'profile': profile,
+        'cars': cars
+    }
+
+    return render(request, 'base/catalogue.html', context)
 
 
 def profile_create(request):
@@ -47,8 +66,8 @@ def profile_create(request):
 
 def profile_details(request):
     current_profile = Profile.objects.get()
-    cars_total_price = 0
-    # TODO: total price of the cars
+    cars = get_cars()
+    cars_total_price = sum([car.price for car in cars])
 
     context = {
         'cars_total_price': cars_total_price,
@@ -81,9 +100,8 @@ def profile_delete(request):
         form = ProfileDeleteForm(request.POST, instance=current_profile)
         if form.is_valid():
             form.save()
-            # TODO: when cars uncomment lines below
-            # cars = Car.objects.all()
-            # cars.delete()
+            cars = Car.objects.all()
+            cars.delete()
             return redirect('index')
 
     context = {
@@ -94,16 +112,73 @@ def profile_delete(request):
 
 
 def car_create(request):
-    return render(request, 'car/car-create.html')
+    profile = get_profile()
+
+    if request.method == 'GET':
+        form = CarCreateForm()
+    else:
+        form = CarCreateForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('catalogue')
+
+    context = {
+        'profile': profile,
+        'form': form
+    }
+
+    return render(request, 'car/car-create.html', context)
 
 
 def car_details(request, pk):
-    return render(request, 'car/car-details.html')
+    profile = get_profile()
+    car = get_car(pk)
+
+    context = {
+        'profile': profile,
+        'car': car
+    }
+
+    return render(request, 'car/car-details.html', context)
 
 
 def car_edit(request, pk):
-    return render(request, 'car/car-edit.html')
+    profile = get_profile()
+    car = get_car(pk)
+
+    if request.method == 'GET':
+        form = CarEditForm(instance=car)
+    else:
+        form = CarEditForm(request.POST, instance=car)
+        if form.is_valid():
+            form.save()
+            return redirect('catalogue')
+
+    context = {
+        'profile': profile,
+        'car': car,
+        'form': form
+    }
+
+    return render(request, 'car/car-edit.html', context)
 
 
 def car_delete(request, pk):
-    return render(request, 'car/car-delete.html')
+    profile = get_profile()
+    car = get_car(pk)
+
+    if request.method == 'GET':
+        form = CarDeleteForm(instance=car)
+    else:
+        form = CarDeleteForm(request.POST, instance=car)
+        if form.is_valid():
+            form.save()
+            return redirect('catalogue')
+
+    context = {
+        'profile': profile,
+        'car': car,
+        'form': form
+    }
+
+    return render(request, 'car/car-delete.html', context)

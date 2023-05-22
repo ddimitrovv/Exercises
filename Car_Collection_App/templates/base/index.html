@@ -11,17 +11,13 @@
 <body>
 <div id="box">
     <header>
-        <!-- Navigation Bar -->
         <h1><a class="index-navigation" href="{% url 'index' %}"><span>C</span>ARS <span>C</span>OLLECTION</a></h1>
         <nav>
             {% if not profile %}
-            <!-- if the user has not created a profile -->
                 <a href="{% url 'profile create' %}">Create Profile</a>
             {% else %}
-                <!-- if the user has created a profile -->
-                {#TODO: add urls#}
-                <a href="#">Catalogue</a>
-                <a href="#">Create Car</a>
+                <a href="{% url 'catalogue' %}">Catalogue</a>
+                <a href="{% url 'car create' %}">Create Car</a>
                 <a href="{% url 'profile details' %}">Profile</a>
             {% endif %}
         </nav>

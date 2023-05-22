@@ -2,77 +2,25 @@
 {% load static %}
 {% block content %}
 
-    <!-- Display paragraph: If there are no cars yet-->
+    {% if not cars %}
         <p class="no-articles">No cars yet</p>
-        <!-- Display div "car" with information about every car (if any)-->
+    {% else %}
         <section id="catalogue">
-            <h1>Total cars: 3</h1>
-                <!-- first car-->
-                <div class="car-card">
-                    <div class="image-wrap">
-                        <!-- car image -->
-                        <img src="https://i0.wp.com/ccclaguna.com/wp-content/uploads/2019/12/DSC_0373-scaled.jpg?fit=2560%2C1707&ssl=1"
-                             alt="Sport Car">
+            <h1>Total cars: {{ cars|length }}</h1>
+                {% for car in cars %}
+                    <div class="car-card">
+                        <div class="image-wrap">
+                            <img src="{{ car.image }}"
+                                 alt="{{ car.type }}">
+                        </div>
+                        <h3>{{ car.type }}</h3>
+                        <h1>{{ car.model }}</h1>
+                        <div class="details-buttons">
+                            <a href="{% url 'car details' pk=car.pk %}" class="details-btn">Details</a>
+                        </div>
                     </div>
-                    <!-- car type -->
-                    <h3>Sport Car</h3>
-                    <!-- car model -->
-                    <h1>Ferrari 488 GTB</h1>
-                    <div class="details-buttons">
-                        <!-- car details button -->
-                        <a href="#" class="details-btn">Details</a>
-                    </div>
-                </div>
-
-                <!-- second car-->
-                <div class="car-card">
-                    <div class="image-wrap">
-                        <!-- car image -->
-                        <img src="https://www.autoinfluence.com/wp-content/uploads/2022/03/2022-Honda-CR-V-Hybrid-Touring-front.jpg"
-                             alt="Crossover">
-                    </div>
-                    <!-- car type -->
-                    <h3>Crossover</h3>
-                    <!-- car model -->
-                    <h1>2022 Honda CR-V</h1>
-                    <div class="details-buttons">
-                        <!-- car details button -->
-                        <a href="#" class="details-btn">Details</a>
-                    </div>
-                </div>
-
-                <!-- third car-->
-                <div class="car-card">
-                    <div class="image-wrap">
-                        <!-- car image -->
-                        <img src="https://i.ytimg.com/vi/qx5OcAmx_sM/maxresdefault.jpg"
-                             alt="Minibus">
-                    </div>
-                    <!-- car type -->
-                    <h3>Minibus</h3>
-                    <!-- car model -->
-                    <h1>ford transit l2h2 </h1>
-                    <div class="details-buttons">
-                        <!-- car details button -->
-                        <a href="#" class="details-btn">Details</a>
-                    </div>
-                </div>
-
-            <div class="car-card">
-                    <div class="image-wrap">
-                        <!-- car image -->
-                        <img src="https://i.ytimg.com/vi/qx5OcAmx_sM/maxresdefault.jpg"
-                             alt="Minibus">
-                    </div>
-                    <!-- car type -->
-                    <h3>Minibus</h3>
-                    <!-- car model -->
-                    <h1>ford transit l2h2 </h1>
-                    <div class="details-buttons">
-                        <!-- car details button -->
-                        <a href="#" class="details-btn">Details</a>
-                    </div>
-                </div>
+             {% endfor %}
         </section>
+    {% endif %}
 
 {% endblock %}

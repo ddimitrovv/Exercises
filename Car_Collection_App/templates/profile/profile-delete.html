@@ -4,15 +4,12 @@
   <section id="create-page" class="auth">
       <div class="container">
         <h1>Are you sure you want to delete your profile?</h1>
-          <!-- Delete Profile Form -->
         <form method="POST" id='delete'>
             {{ form }}
             {% csrf_token %}
-        <!-- Confirm Button -->
         <input class="btn submit" type="submit" value="Yes">
         </form>
       </div>
-    <!-- End Delete Profile Form -->
   </section>
 
 {% endblock %}
