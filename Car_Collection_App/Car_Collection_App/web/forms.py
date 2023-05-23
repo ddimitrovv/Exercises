@@ -41,7 +41,7 @@ class ProfileDeleteForm(ProfileBaseForm):
 
     def __set_disabled_fields(self):
         for _, field in self.fields.items():
-            field.widget.attrs['readonly'] = 'readonly'
+            field.widget.attrs['disabled'] = True
 
 
 class CarBaseForm(forms.ModelForm):
@@ -70,4 +70,4 @@ class CarDeleteForm(CarBaseForm):
 
     def __set_disabled_fields(self):
         for _, field in self.fields.items():
-            field.widget.attrs['readonly'] = 'readonly'
+            field.widget.attrs['disabled'] = True
