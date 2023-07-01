@@ -1,6 +1,6 @@
 import random
 from django.shortcuts import render, redirect
-from django.contrib.auth import get_user_model, authenticate, logout
+from django.contrib.auth import get_user_model, authenticate, logout, login
 
 UserModel = get_user_model()
 
@@ -25,10 +25,14 @@ def index(request):
 
 
 def login_user(request):
-    authenticate(
+    # Authentication
+    user = authenticate(
         username='test_user',
         password='1123QwER'
     )
+
+    # Authorization
+    login(request, user)  # Does `request.user = user` + other stuff
 
     return redirect('index')
 
