@@ -60,6 +60,7 @@ class CreateProfileView(CreateView):
     model = CustomUser
     fields = ['username', 'password']
     template_name = 'create_profile.html'
+    success_url = reverse_lazy('index')
 
     def form_valid(self, form):
         # Hash the password before saving the user
