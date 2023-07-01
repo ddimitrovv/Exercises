@@ -5,6 +5,16 @@
     <title>Title</title>
 </head>
 <body style="background-color: hotpink">
-    <h1>Home Page</h1>
+{#    <h1>Home Page</h1>#}
+
+    <a href="{% url 'login' %}">Login</a>
+    <a href="{% url 'logout' %}">Logout</a>
+
+    <h1>It works</h1>
+    {% csrf_token %}
+
+    <h2>
+        {{ user }}
+    </h2>
 </body>
 </html>
