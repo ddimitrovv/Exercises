@@ -5,6 +5,10 @@ from django.contrib.auth import get_user_model, authenticate
 UserModel = get_user_model()
 
 
+def index(request):
+    return render(request, 'index.html')
+
+
 def login_user(request):
     suffix = random.randint(1, 1000)
 
@@ -17,4 +21,4 @@ def login_user(request):
         'user': user
     }
 
-    return render(request, 'index.html', context)
+    return render(request, 'login.html', context)
